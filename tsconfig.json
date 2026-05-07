@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "experimentalDecorators": true,   
+    "emitDecoratorMetadata": true,      //Allow to emit design-type metadata for decorated declarations in source files. This enables features like dependency injection frameworks to retrieve type information at runtime.
+    //"forceConsistentCasingInFileNames": true,
+    //"resolveJsonModule": true,
+    //"declaration": true,
+    //"declarationMap": true,
+    //"sourceMap": true,
+  }
+}
