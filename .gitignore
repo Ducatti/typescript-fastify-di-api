@@ -9,3 +9,4 @@ temp/
 .vscode/settings.json
 *.swp
 *.swo
+.husky/_/
