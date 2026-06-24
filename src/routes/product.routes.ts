@@ -6,10 +6,33 @@ import type { IProductController } from '../controllers/IProductController.js'
 export const productRoutes: FastifyPluginAsync = async (app) => {
   const ctrl = container.resolve<IProductController>(PRODUCT_CONTROLLER_TOKEN)
 
-  app.get('/', (req, reply) => ctrl.list(req, reply))
+  app.get('/', {
+    schema: {
+      tags: ['products'],
+      summary: 'Listar produtos',
+      response: {
+        200: { $ref: 'ProductListResponse#' },
+      },
+    },
+    handler: (req, reply) => ctrl.list(req, reply),
+  })
 
-  app.get<{ Params: { id: string } }>(
-    '/:id',
-    (req, reply) => ctrl.getById(req, reply)
-  )
+  app.get<{ Params: { id: string } }>('/:id', {
+    schema: {
+      tags: ['products'],
+      summary: 'Buscar produto por ID',
+      params: {
+        type: 'object',
+        properties: {
+          id: { type: 'string', description: 'ID do produto' },
+        },
+        required: ['id'],
+      },
+      response: {
+        200: { $ref: 'Product#' },
+        404: { $ref: 'ErrorResponse#' },
+      },
+    },
+    handler: (req, reply) => ctrl.getById(req, reply),
+  })
 }
