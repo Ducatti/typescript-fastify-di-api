@@ -1,6 +1,6 @@
 
 import './container.js'                 // garante que o DI é configurado antes de tudo
-import Fastify from 'fastify'
+import Fastify, { type FastifyServerOptions } from 'fastify'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
 import { healthRoutes } from './routes/health.routes.js'
@@ -8,12 +8,18 @@ import { productRoutes } from './routes/product.routes.js'
 import { AppError } from './types/errors.js'
 import {
   productSchema,
+  productResponseSchema,
   productListResponseSchema,
   errorResponseSchema,
 } from './schemas/shared.schemas.js'
 
-export async function buildServer() {
-  const app = Fastify({ logger: true })
+export interface BuildServerOptions {
+  /** Desligue nos testes (`logger: false`) para não poluir a saída. */
+  logger?: FastifyServerOptions['logger']
+}
+
+export async function buildServer({ logger = true }: BuildServerOptions = {}) {
+  const app = Fastify({ logger })
 
   await app.register(fastifySwagger, {
     openapi: {
@@ -34,6 +40,7 @@ export async function buildServer() {
   })
 
   app.addSchema(productSchema)
+  app.addSchema(productResponseSchema)
   app.addSchema(productListResponseSchema)
   app.addSchema(errorResponseSchema)
 

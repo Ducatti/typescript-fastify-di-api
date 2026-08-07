@@ -6,7 +6,8 @@ import type { IProductController } from '../controllers/IProductController.js'
 export const productRoutes: FastifyPluginAsync = async (app) => {
   const ctrl = container.resolve<IProductController>(PRODUCT_CONTROLLER_TOKEN)
 
-  app.get('/', {
+  // '' (e não '/') para o path no OpenAPI sair como `/products` em vez de `/products/`
+  app.get('', {
     schema: {
       tags: ['products'],
       summary: 'Listar produtos',
@@ -29,7 +30,7 @@ export const productRoutes: FastifyPluginAsync = async (app) => {
         required: ['id'],
       },
       response: {
-        200: { $ref: 'Product#' },
+        200: { $ref: 'ProductResponse#' },
         404: { $ref: 'ErrorResponse#' },
       },
     },

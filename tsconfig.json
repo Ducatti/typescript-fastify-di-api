@@ -8,10 +8,14 @@
     "strict": true,
     "experimentalDecorators": true,   
     "emitDecoratorMetadata": true,      //Allow to emit design-type metadata for decorated declarations in source files. This enables features like dependency injection frameworks to retrieve type information at runtime.
-    //"forceConsistentCasingInFileNames": true,
-    //"resolveJsonModule": true,
-    //"declaration": true,
-    //"declarationMap": true,
-    //"sourceMap": true,
-  }
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["vitest/globals"],
+  },
+  // Testes ficam incluídos aqui para serem checados por `tsc --noEmit` e pelo ESLint.
+  // O build usa tsconfig.build.json, que os exclui do dist/.
+  "include": ["src/**/*.ts"]
 }

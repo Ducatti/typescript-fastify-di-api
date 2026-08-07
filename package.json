@@ -9,21 +9,27 @@
   "license": "ISC",
   "scripts": {
     "prepare": "husky install",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "dev": "tsx watch src/main.ts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck",
+    "check": "npm run typecheck && npm run lint && npm run test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@swc/core": "^1.15.47",
     "@types/node": "^25.6.0",
+    "@vitest/coverage-v8": "^4.1.10",
     "husky": "^9.1.7",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.3"
+    "typescript-eslint": "^8.59.3",
+    "unplugin-swc": "^1.5.10",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "@fastify/swagger": "^9.7.0",

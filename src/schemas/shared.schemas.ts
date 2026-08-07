@@ -9,6 +9,15 @@ export const productSchema = {
   required: ['id', 'name', 'price'],
 } as const
 
+export const productResponseSchema = {
+  $id: 'ProductResponse',
+  type: 'object',
+  properties: {
+    data: { $ref: 'Product#' },
+  },
+  required: ['data'],
+} as const
+
 export const productListResponseSchema = {
   $id: 'ProductListResponse',
   type: 'object',
