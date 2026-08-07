@@ -6,8 +6,8 @@
     "rootDir": "./src",
     "moduleResolution": "NodeNext",
     "strict": true,
-    "experimentalDecorators": true,   
-    "emitDecoratorMetadata": true,      //Allow to emit design-type metadata for decorated declarations in source files. This enables features like dependency injection frameworks to retrieve type information at runtime.
+    // O wiring de DI é explícito no composition root (src/main/container.ts),
+    // então não há decorators e nem necessidade de metadata em runtime.
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "declaration": true,
