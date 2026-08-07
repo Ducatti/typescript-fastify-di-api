@@ -62,6 +62,9 @@ docker run -p 3000:3000 --env-file .env meu-app
 
 ## 📁 Estrutura do Projeto
 
+> Trabalhando neste repo com um agente de código? As regras operacionais estão em
+> [CLAUDE.md](CLAUDE.md) — receita para adicionar endpoint, anti-padrões e verificação.
+
 Clean Architecture / ports & adapters. As pastas indicam **distância do domínio**,
 não tipo técnico:
 
